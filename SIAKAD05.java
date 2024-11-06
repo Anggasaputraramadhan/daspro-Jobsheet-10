@@ -6,50 +6,46 @@ public class SIAKAD05 {
     public static void main(String[] args) {
         Scanner sc05 = new Scanner(System.in);
 
-        System.out.print("Masukkan jumlah siswa: ");
-        int jumlahSiswa = sc05.nextInt();
-        System.out.print("Masukkan jumlah mata kuliah: ");
-        int jumlahMatkul = sc05.nextInt();
+        int jumlahSiswa, jumlahMatkul;
+        double totalPerMatkul, totalPerSiswa;
+        int[][] nilai = new int[4][3];
+        System.out.println("Masukan jumlah siswa: ");
+        int jumlahSiswaa = sc05.nextInt();
+        System.out.println("Masukan jumlah mata kuliah ");
+        int jumlahMatkull = sc05.nextInt();
 
-        ArrayList<ArrayList<Integer>> nilai = new ArrayList<>();
+        for (int i = 0; i < nilai.length; i++) {
+            System.out.println("Input nilai mahasiswa ke-" + (i + 1));
 
-        for (int i = 0; i < jumlahSiswa; i++) {
-            System.out.println("Input nilai untuk mahasiswa ke-" + (i + 1));
-            ArrayList<Integer> nilaiSiswa = new ArrayList<>();
-
-            for (int j = 0; j < jumlahMatkul; j++) {
-                System.out.print("Nilai mata kuliah " + (j + 1) + ": ");
-                nilaiSiswa.add(sc05.nextInt());
+            for (int j = 0; j < nilai[i].length; j++) {
+                System.out.print("Nilai mata kuliah " + (j+i) + ": ");
+                nilai[i][j] = sc05.nextInt();
             }
-            nilai.add(nilaiSiswa);
+        }
+        for (int i = 0; i < nilai.length; i++) {
+            System.out.println("Input nilai mahasiswa ke-" + (i + 1));
+            double totalPerSiswaa = 0;
+
+            for (int j = 0; j < nilai[i].length; j++) {
+                System.out.print("Nilai mata kuliah " + (j+1) + ": ");
+                nilai[i][j] = sc05.nextInt();
+                totalPerSiswa += nilai[i][j];
+            }
+
+            System.out.println("Nilai rata-rata: " + totalPerSiswa);
         }
 
         System.out.println("\n===============================");
-        for (int i = 0; i < jumlahSiswa; i++) {
-            ArrayList<Integer> nilaiSiswa = nilai.get(i);
-            double totalNilai = 0;
+        System.out.println("Rata-Rata Nilai Setiap Mata Kuliah:");
 
-            System.out.println("Nilai mahasiswa ke-" + (i + 1));
-            for (int j = 0; j < jumlahMatkul; j++) {
-                System.out.print("Nilai mata kuliah " + (j + 1) + ": " + nilaiSiswa.get(j) + " ");
-                totalNilai += nilaiSiswa.get(j);
+        for (int j = 0; j < 3; j++) {
+            double totalPerMatkull = 0;
+
+            for (int i = 0; i < 4; i++); {
+                totalPerMatkul += totalPerSiswa += nilai[i][j];
             }
 
-            double rataRataSiswa = totalNilai / jumlahMatkul;
-            System.out.println("\nRata-rata nilai mahasiswa ke-" + (i + 1) + ": " + rataRataSiswa);
-        }
-
-        System.out.println("\n===============================");
-        System.out.println("Rata-rata nilai setiap mata kuliah:");
-        for (int j = 0; j < jumlahMatkul; j++) {
-            double totalNilaiMatkul = 0;
-
-            for (int i = 0; i < jumlahSiswa; i++) {
-                totalNilaiMatkul += nilai.get(i).get(j);
-            }
-
-            double rataRataMatkul = totalNilaiMatkul / jumlahSiswa;
-            System.out.println("Mata kuliah " + (j + 1) + ": " + rataRataMatkul);
+            System.out.println("Mata Kuliah " + (j + i) + ": " + totalPerMatkul / 4);
         }
     }
 }
