@@ -28,7 +28,7 @@ public class BioskopWithScanner05 {
                     tampilkanPenonton(penonton);
                     break;
 
-                case 3:
+                case 3:  // Exit
                     System.out.println("Keluar dari program...");
                     isRunning = false;
                     break;
@@ -52,11 +52,19 @@ public class BioskopWithScanner05 {
             kolom = sc.nextInt();
             sc.nextLine();
 
-            if (baris >= 1 && baris <= penonton.length && kolom >= 1 && kolom <= penonton[0].length) {
             
-                penonton[baris - 1][kolom - 1] = sc.nextLine();
-                System.out.println("Data penonton berhasil diinput pada baris " + baris + ", kolom " + kolom + ".");
-                validInput = true;
+            if (baris >= 1 && baris <= penonton.length && kolom >= 1 && kolom <= penonton[0].length) {
+                
+                if (penonton[baris - 1][kolom - 1] != null) {
+                    System.out.println("Peringatan: Kursi pada baris " + baris + ", kolom " + kolom + " sudah terisi!");
+                    System.out.println("Silakan pilih kursi lain.");
+                } else {
+                   
+                    System.out.print("Masukkan nama penonton: ");
+                    penonton[baris - 1][kolom - 1] = sc.nextLine();
+                    System.out.println("Data penonton berhasil diinput pada baris " + baris + ", kolom " + kolom + ".");
+                    validInput = true;
+                }
             } else {
                 System.out.println("Nomor baris atau kolom tidak valid! Silakan coba lagi.");
             }
@@ -75,7 +83,6 @@ public class BioskopWithScanner05 {
                 }
             }
             System.out.println();
-
         }
     }
 }
