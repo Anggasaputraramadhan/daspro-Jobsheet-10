@@ -6,6 +6,7 @@ public class BioskopWithScanner05 {
         Scanner sc05 = new Scanner(System.in);
 
         String[][] penonton = new String[4][2];
+
         int menuOption;
         boolean isRunning = true;
 
@@ -41,13 +42,25 @@ public class BioskopWithScanner05 {
     }
 
     public static void inputPenonton(String[][] penonton, Scanner sc) {
-        for (int i = 0; i < penonton.length; i++) {
-            for (int j = 0; j < penonton[i].length; j++) {
-                System.out.print("Masukkan nama penonton pada baris " + (i + 1) + ", kolom " + (j + 1) + ": ");
-                penonton[i][j] = sc.nextLine();
+        int baris, kolom;
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.print("Masukkan nomor baris (1-4): ");
+            baris = sc.nextInt();
+            System.out.print("Masukkan nomor kolom (1-2): ");
+            kolom = sc.nextInt();
+            sc.nextLine();
+
+            if (baris >= 1 && baris <= penonton.length && kolom >= 1 && kolom <= penonton[0].length) {
+            
+                penonton[baris - 1][kolom - 1] = sc.nextLine();
+                System.out.println("Data penonton berhasil diinput pada baris " + baris + ", kolom " + kolom + ".");
+                validInput = true;
+            } else {
+                System.out.println("Nomor baris atau kolom tidak valid! Silakan coba lagi.");
             }
         }
-        System.out.println("Data penonton berhasil diinput.");
     }
 
     public static void tampilkanPenonton(String[][] penonton) {
@@ -55,9 +68,14 @@ public class BioskopWithScanner05 {
         for (int i = 0; i < penonton.length; i++) {
             System.out.print("Baris ke-" + (i + 1) + ": ");
             for (int j = 0; j < penonton[i].length; j++) {
-                System.out.print(penonton[i][j] + " ");
+                if (penonton[i][j] != null) {
+                    System.out.print(penonton[i][j] + " ");
+                } else {
+                    System.out.print("Kosong ");
+                }
             }
             System.out.println();
+
         }
     }
 }
